@@ -14,8 +14,7 @@ public class iBeaconReceiverExample : MonoBehaviour {
 		iBeaconReceiver.BeaconOutOfRangeEvent += OnBeaconOutOfRange;
 		iBeaconReceiver.Init();
 //		GUILayout.Label ("not find");
-		status = "not found";
-		Debug.Log ("Listening for beacons");
+//		Application.OpenURL("http://210.163.187.34:3070");
 	}
 	
 	void OnDestroy() {
@@ -30,13 +29,14 @@ public class iBeaconReceiverExample : MonoBehaviour {
 
 	private void OnBeaconArrived(Beacon beacon) {
 //		GUILayout.Label ("find");
-		status = "find";
+//		status = "find";
+		Application.OpenURL(string.Format("http://210.163.187.34:3070?major={0}&minor={1}", beacon.major, beacon.minor));
 		Debug.Log ("Beacon arrived: "+beacon.ToString());
 	}
 
 	private void OnBeaconOutOfRange(Beacon beacon) {
 //		GUILayout.Label ("not find");
-		status = "not found";
+//		status = "not found";
 		Debug.Log ("Beacon out of range: "+beacon.ToString());
 	}
 
